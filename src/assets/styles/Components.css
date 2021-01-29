@@ -1,0 +1,40 @@
+@font-face {
+  font-family: avenirHeavy;
+  src: url(./Avenir_heavy.ttf);
+}
+
+@font-face {
+  font-family: avenirRoman;
+  src: url(./Avenir_roman.otf);
+}
+
+h1 {
+  font-size: 36px;
+  font-family: avenirHeavy;
+}
+
+h2 {
+  font-size: 20px;
+  font-family: avenirRoman;
+}
+
+.buttonHeavy50 {
+  font-size: 20px;
+  font-family: avenirHeavy;
+  color: white;
+  background-color: rgba(244, 112, 0, 0.5);
+}
+
+.buttonHeavy100 {
+  font-size: 20px;
+  font-family: avenirHeavy;
+  color: white;
+  background-color: rgba(244, 112, 0, 1);
+}
+
+.inputroman {
+  font-size: 18px;
+  font-family: avenirRoman;
+  color: black;
+  background-color: rgba(244, 112, 0, 0.1);
+}
