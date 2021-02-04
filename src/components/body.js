@@ -3,14 +3,15 @@ import Chart from "react-google-charts";
 import "../assets/styles/Components.css";
 
 function Body() {
-  let [x, setX] = useState("");
-  let [y, setY] = useState("");
+  const [hide, setHide] = useState(false)
+  let [x, setX] = useState(0);
+  let [y, setY] = useState(0);
   let buttonstyle = ""
   let buttonoption = ""
   let styledisable = "cursor-not-allowed buttonHeavy50 w-36 h-10 rounded"
-  let styleenable = "cursor-not-allowed  buttonHeavy100 w-36 h-10 rounded"
-  let buttondisable = "true"
-  let buttonenable = "false"
+  let styleenable = "buttonHeavy100 w-36 h-10 rounded"
+  let buttondisable = true
+  let buttonenable = false
   
   if (!x || !y) {
     buttonstyle = styledisable
@@ -18,6 +19,7 @@ function Body() {
   } else {
     buttonstyle = styleenable
     buttonoption = buttonenable
+    setHide(true)
   }
   return (
     <>
@@ -50,7 +52,7 @@ function Body() {
               className={buttonstyle}
               type="submit"
               id="submitButton"
-              disabled={buttonoption}
+              disabled= {buttonoption}
             >
               Visualiser
             </button>
@@ -58,15 +60,15 @@ function Body() {
         </form>
         <Chart
           id="donutChart"
-          className="p-10"
+          className=""
           width={"250px"}
           height={"250px"}
           chartType="PieChart"
           loader={<div className="p-10">Loading Chart</div>}
           data={[
             ["Value", "Numbers"],
-            ["X", { x }],
-            ["Y", { y }],
+            ["X", x ],
+            ["Y", y ],
           ]}
           options={{
             legend: "none",
