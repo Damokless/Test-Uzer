@@ -71,7 +71,7 @@ function Body() {
               type="submit"
               id="submitButton"
               disabled="disabled"
-              onClick="submitData"
+              onClick={submitData}
             >
               Visualiser
             </button>
