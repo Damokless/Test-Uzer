@@ -3,23 +3,24 @@ import Chart from "react-google-charts";
 import "../assets/styles/Components.css";
 
 function Body() {
-  const [hide, setHide] = useState(false)
   let [x, setX] = useState(0);
-  let [y, setY] = useState(0);
-  let buttonstyle = ""
-  let buttonoption = ""
-  let styledisable = "cursor-not-allowed buttonHeavy50 w-36 h-10 rounded"
-  let styleenable = "buttonHeavy100 w-36 h-10 rounded"
-  let buttondisable = true
-  let buttonenable = false
-  
+  let [y, setY] = useState();
+  let dataX = parseFloat(x)
+  let dataY = parseFloat(y)
+  console.log(typeof(x))
+  let buttonstyle = "";
+  let buttonoption = "";
+  let styledisable = "cursor-not-allowed buttonHeavy50 w-36 h-10 rounded";
+  let styleenable = "buttonHeavy100 w-36 h-10 rounded";
+  let buttondisable = true;
+  let buttonenable = false;
+
   if (!x || !y) {
-    buttonstyle = styledisable
-    buttonoption = buttondisable
+    buttonstyle = styledisable;
+    buttonoption = buttondisable;
   } else {
-    buttonstyle = styleenable
-    buttonoption = buttonenable
-    setHide(true)
+    buttonstyle = styleenable;
+    buttonoption = buttonenable;
   }
   return (
     <>
@@ -52,24 +53,18 @@ function Body() {
               className={buttonstyle}
               type="submit"
               id="submitButton"
-              disabled= {buttonoption}
+              disabled={buttonoption}
             >
               Visualiser
             </button>
           </div>
         </form>
         <Chart
-          id="donutChart"
-          className=""
           width={"250px"}
           height={"250px"}
           chartType="PieChart"
-          loader={<div className="p-10">Loading Chart</div>}
-          data={[
-            ["Value", "Numbers"],
-            ["X", x ],
-            ["Y", y ],
-          ]}
+          loader={<div>Loading Chart</div>}
+          data={[["Value", "Numbers"], ["X", dataX], ["Y", dataY] ]}
           options={{
             legend: "none",
             // Just add this option
@@ -79,7 +74,7 @@ function Body() {
               1: { color: "grey" },
             },
           }}
-          rootProps={{ "data-testid": "6" }}
+          rootProps={{ "data-testid": "3" }}
         />
       </div>
     </>
