@@ -1,44 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Chart from "react-google-charts";
 import "../assets/styles/Components.css";
 
 function Body() {
-  let x = ""
-  let y = ""
-
-  function handleChange1(i) {
-    if (i.target.value === null || i.target.value === "") {
-      document.querySelector("button").classList.remove("buttonHeavy100");
-      document.querySelector("button").classList.add("buttonHeavy50");
-      document.querySelector("button").classList.add("cursor-not-allowed");
-      document.getElementById("submitButton").disabled = true;
-    } else {
-      document.querySelector("button").classList.remove("buttonHeavy50");
-      document.querySelector("button").classList.add("buttonHeavy100");
-      document.querySelector("button").classList.remove("cursor-not-allowed");
-      document.getElementById("submitButton").disabled = false;
-    }
+  let [x, setX] = useState("");
+  let [y, setY] = useState("");
+  let buttonstyle = ""
+  let buttonoption = ""
+  let styledisable = "cursor-not-allowed buttonHeavy50 w-36 h-10 rounded"
+  let styleenable = "cursor-not-allowed  buttonHeavy100 w-36 h-10 rounded"
+  let buttondisable = "true"
+  let buttonenable = "false"
+  
+  if (!x || !y) {
+    buttonstyle = styledisable
+    buttonoption = buttondisable
+  } else {
+    buttonstyle = styleenable
+    buttonoption = buttonenable
   }
-
-  function handleChange2(j) {
-    if (j.target.value == null || j.target.value === "") {
-      document.querySelector("button").classList.remove("buttonHeavy100");
-      document.querySelector("button").classList.add("buttonHeavy50");
-      document.querySelector("button").classList.add("cursor-not-allowed");
-      document.getElementById("submitButton").disabled = true;
-    } else {
-      document.querySelector("button").classList.remove("buttonHeavy50");
-      document.querySelector("button").classList.add("buttonHeavy100");
-      document.querySelector("button").classList.remove("cursor-not-allowed");
-      document.getElementById("submitButton").disabled = false;
-    }
-  }
-
-  function submitData() {
-     x = document.getElementById("xInput").value
-     y = document.getElementsById("yInput").value
-  }
-
   return (
     <>
       <div className="m-5">
@@ -55,7 +35,7 @@ function Body() {
               type="number"
               min="0"
               placeholder="X"
-              onChange={handleChange1}
+              onChange={({ target: { value } }) => setX(value)}
             ></input>
             <input
               className="inputroman text-black w-36 h-10 ring-0 rounded p-5 m-2"
@@ -64,28 +44,29 @@ function Body() {
               type="number"
               min="0"
               placeholder="Y"
-              onChange={handleChange2}
+              onChange={({ target: { value } }) => setY(value)}
             ></input>
             <button
-              className="cursor-not-allowed buttonHeavy50 w-36 h-10 rounded"
+              className={buttonstyle}
               type="submit"
               id="submitButton"
-              disabled="disabled"
-              onClick={submitData}
+              disabled={buttonoption}
             >
               Visualiser
             </button>
           </div>
         </form>
-        <Chart id="donutChart"className="p-10"
+        <Chart
+          id="donutChart"
+          className="p-10"
           width={"250px"}
           height={"250px"}
           chartType="PieChart"
           loader={<div className="p-10">Loading Chart</div>}
           data={[
             ["Value", "Numbers"],
-            ["X", {x}],
-            ["Y", {y}],
+            ["X", { x }],
+            ["Y", { y }],
           ]}
           options={{
             legend: "none",
@@ -96,7 +77,8 @@ function Body() {
               1: { color: "grey" },
             },
           }}
-          rootProps={{ "data-testid": "6" }}/>
+          rootProps={{ "data-testid": "6" }}
+        />
       </div>
     </>
   );
